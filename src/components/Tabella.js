@@ -1,7 +1,9 @@
 import check from './images/circle.png';
 import cloud from './images/cloud.png';
 import hour from './images/hour.png';
+import InfoCard from './InfoCard';
 
+//! Componente per la generazione della LISTA.
 const Tabella = ({utentiLista}) => {
   const styleTable = {
     width: '95%',
@@ -27,6 +29,8 @@ const Tabella = ({utentiLista}) => {
     borderTop: '1px solid #343E4E',
     borderBottom: '1px solid #343E4E',
   }
+  //! Switch case per lo status di un utente
+
   const getStatusStyle = (status) => {
   switch (status) {
     case 'Completed':
@@ -46,6 +50,7 @@ const Tabella = ({utentiLista}) => {
   }
 };
 
+
    return (
     <table className="table" style={styleTable}>
     <thead p>
@@ -58,13 +63,14 @@ const Tabella = ({utentiLista}) => {
       </tr>
     </thead>
     <tbody>
-      {utentiLista.slice().reverse().map((utente, index) => (
+      {//! la lista utenti viene passata come props a Tabella e poi fatto un mapping proprio come in Sidebar.js
+      utentiLista.slice().reverse().map((utente, index) => (
         
       <tr key={utente.id}>
         <td style={{...styleText, borderLeft: index === -1  ? 'none' : '1px solid #343E4E'}}>{utente.id}</td>
         <td style={styleText}>{utente.username}</td>
         <td style={styleText}>{utente.data}</td>
-        <td style={styleText}>{utente.amount}</td>
+        <td style={styleText}>{utente.amount}€</td>
         <td style={{...styleText, borderRight: index === utentiLista.length  ? 'none' : '1px solid #343E4E' }}>
 
           <div style={{color: getStatusStyle(utente.status).color, 

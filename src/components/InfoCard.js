@@ -3,9 +3,15 @@ import dollar from './images/dollar.png';
 import calendar from './images/calendar.png';
 import response from './images/send-money.png';
 
-const InfoCard =  ({utentiOnline, totaleVendite, totaleVenditeMese, mediaPagamenti, styling} ) => {
+//! InfoCard è la componente per stampare a schermo le 4 card della pagina principale e dove all'interno troviamo anche i relativi parametri formali che
+//! dovranno essere implementati con delle function (per ora ho solo scritto utentiOnline = 14; TotaleVendite= '200.000' ecc...)
+
+const InfoCard =  ({utentiLista, utentiOnline, totaleVendite, totaleVenditeMese, mediaPagamenti, styling} ) => {
     utentiOnline = 14;
-    totaleVendite = '200.000';
+    console.log(utentiLista)
+    totaleVendite = utentiLista.reduce((total, element) =>{
+       return total + element.amount;
+    }, 0).toString();
     totaleVenditeMese = '200.000';
     mediaPagamenti = '13';
     styling = {

@@ -2,6 +2,7 @@ import React from "react";
 import home from './images/home.png';
 
 //!Implementare extraNav = titoloExtra
+//! Componente NavLocation per fare in modo che si possa ricordare del titolo dell'oggetto <li> cliccato.
 function NavLocation ({titolo, titoloExtra}){
     const cardStyle ={
         minWidth: '10%',
