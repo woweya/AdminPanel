@@ -1,0 +1,12 @@
+.App {
+height: 100vh;
+width: 100%;
+background-color: #111827;
+display: flex;
+flex-direction: row;
+}
+
+.sidebar-container{
+  width: 10%;
+  background-color: #1F2A37;
+}

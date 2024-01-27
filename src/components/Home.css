@@ -1,0 +1,33 @@
+:root{
+    --primary-text: #D7D8DB;
+    --secondary-color: rgb(255, 0, 0);
+    --green-button: #356A64;
+    --yellow-button: #F4C617;
+    --purple-button: #776EAD;
+    --card-bgcolor: #1F2A37;
+    --font-p: 11px;
+}
+
+
+.home{
+    width: 100%;
+}
+.page-location{
+    border: 1px solid red;
+    min-height:30px;
+    max-height: 30px;
+    margin: 2rem 0rem 0rem 2rem;
+    background-color: var(--card-bgcolor);
+}
+
+.card-row-4{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content:center;
+    gap: 20px;
+    width: 100%;
+}
+
+.table{
+    margin: 0 auto;
+}
