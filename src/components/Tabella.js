@@ -1,10 +1,27 @@
 import check from './images/circle.png';
 import cloud from './images/cloud.png';
 import hour from './images/hour.png';
-import InfoCard from './InfoCard';
+import React , { useState } from 'react';
 
 //! Componente per la generazione della LISTA.
 const Tabella = ({utentiLista}) => {
+  const [orderBy, setOrderBy] = useState('');
+   function handleOrderBy(orderBy){
+    setOrderBy(orderBy);
+    if(orderBy === 'username'){
+      utentiLista.sort((b, a) => a.username.localeCompare(b.username));
+    }
+    if(orderBy === 'amount'){
+      utentiLista.sort((a, b) => a.amount - b.amount); 
+    }
+    if(orderBy === 'status'){
+      utentiLista.sort((b, a) => a.status.localeCompare(b.status));
+    }
+    if(orderBy === 'id'){
+      utentiLista.sort((a, b) => a.id - b.id);
+      
+    }
+   }
   const styleTable = {
     width: '95%',
     textAlign: 'center',
@@ -29,6 +46,8 @@ const Tabella = ({utentiLista}) => {
     borderTop: '1px solid #343E4E',
     borderBottom: '1px solid #343E4E',
   }
+  //Funzione di ordinamento personalizzata 
+
   //! Switch case per lo status di un utente
 
   const getStatusStyle = (status) => {
@@ -53,13 +72,13 @@ const Tabella = ({utentiLista}) => {
 
    return (
     <table className="table" style={styleTable}>
-    <thead p>
+    <thead>
       <tr style={{...styleTr}}>
-        <th style={{padding:'20px 0px 20px 10px'}}>ID</th>
-        <th style={{padding:'10px'}}>USERNAME</th>
-        <th style={{padding:'10px'}}>DATA TIME</th>
-        <th style={{padding:'10px'}}>AMOUNT</th>
-        <th style={{padding:'10px'}}>STATUS</th>
+        <th style={{padding:'20px 0px 20px 10px', cursor: 'pointer'}} onClick={() => handleOrderBy('id')}>ID</th>
+        <th style={{padding:'10px', cursor: 'pointer'}} onClick={() => handleOrderBy('username')} >USERNAME</th>
+        <th style={{padding:'10px', cursor: 'pointer'}} onClick={() => handleOrderBy('data')}>DATA TIME</th>
+        <th style={{padding:'10px', cursor: 'pointer'}} onClick={() => handleOrderBy('amount')}>AMOUNT</th>
+        <th style={{padding:'10px', cursor: 'pointer'}} onClick={() => handleOrderBy('status')}>STATUS</th>
       </tr>
     </thead>
     <tbody>
