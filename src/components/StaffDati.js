@@ -1,8 +1,28 @@
+import { useMemo } from 'react';
 import check from './images/circle.png';
 import cloud from './images/cloud.png';
 import hour from './images/hour.png';
-const StaffDati = ({utentiLista}) => {
-    
+//Aggiunta come props sortField
+const StaffDati = ({utentiLista, staffColumns, sortField}) => {
+   const sortedItem = useMemo(() => {
+    if (!sortField) {
+      return utentiLista;
+    }
+    const column = staffColumns.find(column => column.field === sortField);
+    const sortedList = [...utentiLista];
+     sortedList.sort((a, b) => {
+      if (a[sortField] < b[sortField]) {
+        return column.ascending ? -1 : 1;
+      }
+      if (a[sortField] > b[sortField]) {
+        return column.ascending ? 1 : -1;
+      }
+      return 0;
+  });
+  return sortedList;
+  
+}, [utentiLista, staffColumns, sortField]); // Aggiunta come dependecies sortField.
+
   const styleText = {
     backgroundColor: '#1F2A37',
     textAlign: 'left',
@@ -12,7 +32,6 @@ const StaffDati = ({utentiLista}) => {
     borderTop: '1px solid #343E4E',
     borderBottom: '1px solid #343E4E',
   }
-
 
     const getStatusStyle = (status) => {
         switch (status) {
@@ -32,14 +51,13 @@ const StaffDati = ({utentiLista}) => {
             return {};
         }
       };
-      
     return (
-        <tbody>
+        <tbody style={{width:'100%'}}>
       {//! la lista utenti viene passata come props a Tabella e poi fatto un mapping proprio come in Sidebar.js
       
-      utentiLista.map((utente, index) => (
+      sortedItem.map((utente, index) => (
         
-      <tr key={utente.id}>
+      <tr key={utente.id} style={{width:'100%'}}>
         <td style={{...styleText, borderLeft: index === -1  ? 'none' : '1px solid #343E4E'}}>{utente.id}</td>
         <td style={styleText}>{utente.username}</td>
         <td style={styleText}>{utente.data}</td>

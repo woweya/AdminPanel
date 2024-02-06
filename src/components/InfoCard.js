@@ -8,7 +8,6 @@ import response from './images/send-money.png';
 
 const InfoCard =  ({utentiLista, utentiOnline, totaleVendite, totaleVenditeMese, mediaPagamenti, styling} ) => {
     utentiOnline = 14;
-    console.log(utentiLista)
     totaleVendite = utentiLista.reduce((total, element) =>{
        return total + element.amount;
     }, 0).toString();
